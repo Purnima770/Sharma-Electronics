@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sharma Electronics — Sales & Service</title>
+
+  <!-- Styles: Black & Gold theme -->
+  <style>
+    :root{
+      --gold: #FFD700;
+      --gold-dark: #ffcc00;
+      --bg: #000;
+      --card: #0b0b0b;
+      --muted: #cfc9bd;
+      --glass: rgba(255,215,0,0.06);
+    }
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(circle at top left, #1a0f00 0%, #000 40%);
+      color: #fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:60;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:18px 28px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.35));
+      border-bottom:1px solid rgba(255,215,0,0.06);
+      backdrop-filter: blur(6px);
+    }
+    .logo{display:flex; gap:10px; align-items:center; font-weight:700; color:var(--gold);}
+    .logo .bolt{font-size:1.35rem; text-shadow:0 0 10px rgba(255,215,0,0.25)}
+    nav a{color:#fff; text-decoration:none; margin-left:20px; font-weight:600; transition:all .22s}
+    nav a:hover{color:var(--gold); text-shadow:0 0 8px rgba(255,215,0,0.25)}
+
+    /* Language toggle */
+    .controls{display:flex; gap:12px; align-items:center}
+    .lang-btn{
+      padding:8px 12px; border-radius:999px; font-weight:600; cursor:pointer;
+      background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.04);
+      transition:all .18s;
+    }
+    .lang-btn.active{background:var(--gold); color:#000; box-shadow:0 6px 18px rgba(255,215,0,0.12)}
+
+    /* Hero */
+    .hero{
+      min-height:100vh;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; padding:48px 18px;
+      background: linear-gradient(120deg, #000 0%, #1a0f00 40%, #000 100%);
+      background-size: 300% 300%;
+      animation: moveGrad 12s ease-in-out infinite;
+    }
+    .hero h1{
+      font-size:2.4rem; color:var(--gold); margin-bottom:14px;
+      letter-spacing:0.6px; text-shadow:0 0 14px rgba(255,215,0,0.22);
+    }
+    .hero .sub{color:var(--muted); max-width:820px; margin:0 auto 18px; font-size:1.05rem}
+    .cta-row{display:flex; gap:14px; margin-top:12px; flex-wrap:wrap; justify-content:center}
+    .btn{
+      background:linear-gradient(90deg,var(--gold) 0%, var(--gold-dark) 50%, var(--gold) 100%);
+      padding:12px 22px; border-radius:26px; border:none; cursor:pointer; font-weight:700;
+      color:#000; box-shadow:0 10px 30px rgba(255,215,0,0.08); transition:transform .18s, box-shadow .18s;
+      background-size:200% 200%; animation:shimmer 3.2s linear infinite;
+    }
+    .btn.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.06)}
+    .btn:hover{transform:translateY(-6px); box-shadow:0 20px 50px rgba(255,215,0,0.14)}
+
+    /* Main layout */
+    main{max-width:1100px;margin:40px auto;padding:0 18px 80px}
+
+    /* Cards / Items */
+    .section-head{display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:20px}
+    .section-head h2{color:var(--gold); font-size:1.6rem; text-shadow:0 0 12px rgba(255,215,0,0.08)}
+    .items {display:flex;flex-direction:column;gap:18px; align-items:center}
+    .card{
+      width:340px; background:linear-gradient(180deg,var(--card),#070707);
+      padding:20px;border-radius:14px;border:1px solid rgba(255,215,0,0.08);
+      box-shadow:0 10px 30px rgba(255,215,0,0.06);
+      transition:transform .25s, box-shadow .25s;
+    }
+    .card:hover{transform:translateY(-10px); box-shadow:0 30px 70px rgba(255,215,0,0.14)}
+    .card h3{color:var(--gold); margin-bottom:8px}
+    .card p{color:var(--muted); font-size:.98rem}
+
+    /* Two-column area for About + Photo */
+    .two-col{display:flex; gap:28px; align-items:center; justify-content:center; margin-top:36px; flex-wrap:wrap}
+    .about-box{flex:1; min-width:300px; max-width:640px; background:linear-gradient(180deg,#080808,#0f0f0f);
+      padding:22px;border-radius:12px;border:1px solid rgba(255,215,0,0.05); box-shadow:0 12px 36px rgba(255,215,0,0.03)}
+    .about-box h3{color:var(--gold); margin-bottom:10px}
+    .about-box p{color:var(--muted)}
+    .photo{
+      width:300px; height:300px; border-radius:12px; overflow:hidden; border:1px solid rgba(255,215,0,0.08);
+      box-shadow:0 14px 40px rgba(255,215,0,0.05); display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg,#150900,#2b1700);
+    }
+    .photo img{width:100%;height:100%;object-fit:cover}
+
+    /* Contact section */
+    .contact-section{margin-top:48px;display:flex; flex-wrap:wrap; gap:22px; justify-content:center; align-items:flex-start}
+    .contact-card{
+      background:linear-gradient(180deg,#070707,#0b0b0b);
+      padding:18px;border-radius:12px;border:1px solid rgba(255,215,0,0.06);
+      width:320px; box-shadow:0 10px 30px rgba(255,215,0,0.05)
+    }
+    .contact-card p{color:var(--muted); margin:8px 0}
+    .contact-card a{color:var(--gold); text-decoration:none; font-weight:700}
+    .map-embed{width:500px; max-width:100%; height:240px; border-radius:10px; overflow:hidden; border:1px solid rgba(255,215,0,0.06); box-shadow:0 12px 36px rgba(255,215,0,0.04)}
+
+    /* Footer */
+    footer{padding:30px 18px; text-align:center; margin-top:40px; color:#bfb6a8; border-top:1px solid rgba(255,215,0,0.03)}
+    .socials{display:flex; gap:14px; justify-content:center; margin-top:10px}
+    .socials a{color:var(--gold); text-decoration:none; font-size:1.2rem}
+
+    /* small screens */
+    @media (max-width:880px){
+      header{padding:14px 16px}
+      .hero h1{font-size:2rem}
+      .card{width:92%}
+      .photo{width:260px;height:260px}
+    }
+    @media (max-width:520px){
+      nav a{display:none}
+      .logo{gap:8px}
+    }
+
+    /* Animations */
+    @keyframes moveGrad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+    @keyframes typeIn{from{width:0}to{width:100%}}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo" aria-hidden="true">
+      <div class="bolt">⚡</div>
+      <div>
+        <div style="font-size:1.05rem">Sharma Electronics</div>
+        <div style="font-size:.72rem;color:var(--muted);font-weight:600">Sales & Service • Warranty • Repair</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <nav aria-label="Main">
+        <a href="#home">Home</a>
+        <a href="#items">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Language toggle (EN / HI) -->
+      <button id="enBtn" class="lang-btn active" aria-pressed="true">EN</button>
+      <button id="hiBtn" class="lang-btn" aria-pressed="false">HI</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero" role="banner">
+    <h1 id="shopName"></h1>
+<p>Best electronics sales and repair service in town.</p>
+
+    <h1 id="heroTitle">Reliable. Trusted. Professional.</h1>
+    <p class="sub" id="heroSub">We provide sales and service of welding machines, stabilizers, inverters and other electronics. Quick service, reliable parts, honest prices.</p>
+    <div class="cta-row">
+      <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+      <a class="btn secondary" href="#items">View Products</a>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main>
+    <!-- Items -->
+    <section id="items" aria-labelledby="itemsHead">
+      <div class="section-head"><h2 id="itemsHead">Our Items</h2></div>
+      <div class="items" id="itemsList">
+        <article class="card">
+          <h3>Welding Machine</h3>
+          <p>Single Phase, Double phase and 3 phase welding machine sales and services provide</p>
+        </article>
+
+        <article class="card">
+          <h3>Stabilizer</h3>
+          <p>Sales and Service</p>
+        </article>
+
+        <article class="card">
+          <h3>Inverter</h3>
+          <p>Microtech, Luminous, Exide, Apro, Amron and other solar inverter services provides</p>
+        </article>
+
+        <article class="card">
+          <h3>And many more</h3>
+        </article>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" style="margin-top:34px">
+      <div class="two-col">
+        <div class="about-box">
+          <h3>About Sharma Electronics</h3>
+
+                      Sharma Electronics is a family-owned shop providing trusted sales and professional repair services for home and industrial 
+                      We serve with original spare parts, Customer satisfaction and honest pricing are our priority.
+           
+
+        </div>
+
+        <!-- Photo placeholder: replace src with your father's/shop photo -->
+        <div class="photo" title="Shop photo">
+  <img id="shopPhoto" src="images/shop-photo.jpg" alt="Sharma Electronics Shop Photo">
+</div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="margin-top:44px">
+      <div class="section-head"><h2>Contact Us</h2></div>
+      <div class="contact-section">
+        <div class="contact-card" aria-label="Address">
+          <strong style="color:var(--gold)">Address</strong>
+          <p> Buxidih Road, Near Congress Office</p>
+          <p><strong style="color:var(--gold)">Owner:</strong> Mr. Bikram Kumar Sharma (Rinku)</p>
+        </div>
+
+        <div class="contact-card" aria-label="Phone">
+          <strong style="color:var(--gold)">Phone</strong>
+          <p>8709997003</p>
+          <p>9470500713</p>
+          <p><a href="tel:+918709997003">Call 8709997003</a></p>
+        </div>
+
+        <div class="contact-card" aria-label="Email & WhatsApp">
+          <strong style="color:var(--gold)">Email</strong>
+          <p><a href="mailto:shharmavikram003@gmail.com">sharmavikram003@gmail.com</a></p>
+          <div style="height:10px"></div>
+          <!-- <a class="btn" href="https://wa.me/918709997003" target="_blank" rel="noopener">Chat on WhatsApp</a> -->
+          <a href="https://wa.me/918709997003" class="whatsapp-btn" target="_blank"> 
+  Chat on WhatsApp
+</a>
+
+<style>
+.whatsapp-btn {
+  background-color: #25D366; /* WhatsApp green */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.whatsapp-btn:hover {
+  background-color: #128C7E; /* Darker green on hover */
+}
+</style>
+
+        </div>
+
+        
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div>© <span id="year"></span> Sharma Electronics • All Rights Reserved</div>
+    <div class="socials" aria-hidden="true">
+      <a href="https://www.facebook.com/share/1CwhNinWRM/" title="Facebook">f</a>
+      <a href="https://www.instagram.com/sharmaelectronics256" title="Instagram">ig</a>
+      <a href="https://wa.me/918709997003" title="WhatsApp">wa</a>
+    </div>
+  </footer>
+
+  <!-- Small JS: language toggle, year, fallback behaviors -->
+  <script>
+    // Insert current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Language content (English + Hindi)
+    const content = {
+      en: {
+        heroTitle: "Reliable. Trusted. Professional.",
+        heroSub: "We provide sales and service of welding machines, stabilizers, inverters and other electronics. Quick service, reliable parts, honest prices.",
+        about: "Sharma Electronics is a family-owned shop providing trusted sales and professional repair services for home and industrial electronics. We serve the Buxidih area with experienced technicians and original spare parts. Customer satisfaction and honest pricing are our priority.",
+        items: [
+          {title:"Welding Machine", text:"Single Phase, Double Phase and 3 Phase Welding Machine Sales and Services Provided"},
+          {title:"Stabilizer", text:"Sales and Service"},
+          {title:"Inverter", text:"Microtech, Luminous, Exide, Apro, Amron and other solar inverter services provides"},
+          {title:"And many more", text:" "}
+        ]
+      },
+      hi: {
+        heroTitle: "भरोसेमंद। गुणवत्तापूर्ण। पेशेवर।",
+        heroSub: "हम वेल्डिंग मशीन, स्टेबलाइज़र, इनवर्टर और अन्य इलेक्ट्रॉनिक्स की बिक्री और सेवा प्रदान करते हैं। तेज़ सेवा, भरोसेमंद पार्ट्स और ईमानदार दाम।",
+        about: "Sharma Electronics एक पारिवारिक दुकान है जो घरेलू और औद्योगिक इलेक्ट्रॉनिक्स की बिक्री और पेशेवर मरम्मत सेवाएं प्रदान करती है। हम अनुभवी तकनीशियनों और मूल स्पेयर पार्ट्स के साथ Buxidih इलाके में सेवा देते हैं। ग्राहक संतुष्टि और सही दाम हमारी प्राथमिकता है।",
+        items: [
+          {title:"वेल्डिंग मशीन", text:"सिंगल फेज, डबल फेज और थ्री फेज वेल्डिंग मशीन की बिक्री एवं सर्विस प्रदान की जाती है।"},
+          {title:"स्टेबलाइज़र", text:"बिक्री एवं सेवा।"},
+          {title:"इनवर्टर", text:"माइक्रोटेक, ल्यूमिनस, एक्साइड, एप्रो, ऐमरोन और अन्य सोलर इनवर्टर की बिक्री एवं सेवा उपलब्ध है।"},
+          {title:"और भी बहुत कुछ", text:" "}
+        ]
+      }
+    };
+
+    // Elements
+    const enBtn = document.getElementById('enBtn');
+    const hiBtn = document.getElementById('hiBtn');
+    const heroTitle = document.getElementById('heroTitle');
+    const heroSub = document.getElementById('heroSub');
+    const aboutText = document.getElementById('aboutText');
+    const itemsList = document.getElementById('itemsList');
+
+    function setLanguage(lang){
+      // toggle active class
+      enBtn.classList.toggle('active', lang === 'en');
+      hiBtn.classList.toggle('active', lang === 'hi');
+      enBtn.setAttribute('aria-pressed', lang === 'en');
+      hiBtn.setAttribute('aria-pressed', lang === 'hi');
+
+      // set texts
+      heroTitle.textContent = content[lang].heroTitle;
+      heroSub.textContent = content[lang].heroSub;
+      aboutText.textContent = content[lang].about;
+
+      // rebuild items
+      itemsList.innerHTML = '';
+      content[lang].items.forEach(it=>{
+        const article = document.createElement('article');
+        article.className = 'card';
+        article.innerHTML = `<h3>${it.title}</h3><p>${it.text}</p>`;
+        itemsList.appendChild(article);
+      });
+    }
+
+    enBtn.addEventListener('click', ()=> setLanguage('en'));
+    hiBtn.addEventListener('click', ()=> setLanguage('hi'));
+
+    // initial language
+    setLanguage('en');
+
+    // Small UX: if shop photo doesn't exist, show a fallback colored area
+    const shopPhoto = document.getElementById('shopPhoto');
+    shopPhoto.addEventListener('error', ()=> {
+      // nothing required — CSS fallback already shows gradient background
+    });
+
+    // Smooth scroll for header nav links
+    document.querySelectorAll('nav a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t) t.scrollIntoView({behavior:'smooth'});
+      });
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
