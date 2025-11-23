@@ -1,0 +1,312 @@
+
+/* ===========================
+   Global Reset + Base Styles
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ===========================
+   Header
+=========================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: #000;
+  border-bottom: 1px solid #222;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.logo {
+  color: gold;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px gold, 0 0 20px #ffcc00;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 25px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: gold;
+  text-shadow: 0 0 10px gold;
+}
+
+/* ===========================
+   Hero Section
+=========================== */
+.hero {
+  text-align: center;
+  padding: 140px 20px;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #000, #1a0f00, #3b2b00, #1a0f00, #000);
+  background-size: 600% 600%;
+  animation: moveGradient 10s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: gold;
+  text-shadow: 0 0 15px #ffcc00, 0 0 30px #ffd700;
+  animation: glowText 3s infinite alternate;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #ddd;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.hero button {
+  margin-top: 25px;
+  padding: 12px 30px;
+  background: linear-gradient(90deg, gold, #ffcc00, gold);
+  background-size: 200% 200%;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  animation: shimmer 3s infinite linear;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px gold;
+}
+
+/* ===========================
+   Items / Services Section
+=========================== */
+.items-section {
+  text-align: center;
+  padding: 80px 20px;
+  background: #000;
+}
+
+.items-section h2 {
+  color: gold;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-shadow: 0 0 15px gold;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.item {
+  background: #0a0a0a;
+  padding: 25px;
+  border-radius: 15px;
+  width: 320px;
+  border: 1px solid gold;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  transition: 0.4s;
+}
+
+.item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.item h3 {
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.item p {
+  color: #ccc;
+}
+
+/* ===========================
+   About Section
+=========================== */
+.about {
+  background: linear-gradient(180deg, #000, #111);
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.about h2 {
+  color: gold;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px gold;
+}
+
+.about p {
+  max-width: 800px;
+  margin: auto;
+  color: #ddd;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* ===========================
+   Contact Section
+=========================== */
+.contact {
+  background: #000;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.contact h2 {
+  color: gold;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-shadow: 0 0 15px gold;
+}
+
+.contact-info {
+  display: inline-block;
+  text-align: left;
+  background: #0a0a0a;
+  padding: 25px 30px;
+  border-radius: 15px;
+  border: 1px solid gold;
+  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 2;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.contact-info i {
+  color: gold;
+  margin-right: 10px;
+}
+
+.whatsapp-btn {
+  display: inline-block;
+  background: gold;
+  color: black;
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 25px;
+  margin-top: 15px;
+  text-decoration: none;
+  animation: shimmer 3s infinite linear;
+  transition: 0.3s;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgb(213, 244, 13);
+}
+
+/* ===========================
+   Footer
+=========================== */
+footer {
+  background: #000;
+  text-align: center;
+  padding: 30px 0;
+  color: #bbb;
+  border-top: 1px solid #222;
+}
+
+footer .social-icons a {
+  color: gold;
+  margin: 0 10px;
+  font-size: 1.3rem;
+  transition: 0.3s;
+}
+
+footer .social-icons a:hover {
+  color: white;
+  transform: scale(1.2);
+  text-shadow: 0 0 10px gold;
+}
+
+/* ===========================
+   Animations
+=========================== */
+@keyframes glowText {
+  0% { text-shadow: 0 0 10px gold; }
+  100% { text-shadow: 0 0 30px #ffcc00; }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes moveGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav a {
+    margin: 10px;
+  }
+
+  .item {
+    width: 90%;
+  }
+
+  .contact-info {
+    width: 90%;
+  }
+}
+
+/* Typing Effect */
+#shopName {
+  display: inline-block;
+  font-size: 3rem;
+  color: gold;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Scroll Reveal Effect */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
